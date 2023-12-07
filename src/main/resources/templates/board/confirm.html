@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/board/reg" method="post">
+    <input type="text" name="title">
+    <input type="hidden" name="writer" th:value="${session.sessionUserId}">
+    <textarea rows="10" name="content"></textarea>
+    <button type="submit">게시글등록</button>
+</form>
+
+</body>
+</html>

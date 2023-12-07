@@ -24,7 +24,7 @@ public class LoginController {
         if (member != null) {
             HttpSession session = req.getSession();
             session.setAttribute("sessionUserId", member.getName());
-            return "main";
+            return "redirect:/board/list";
         } else {
             model.addAttribute("msg", "아이디 또는 패스워드를 확인해주세요");
             return "index";
@@ -36,15 +36,25 @@ public class LoginController {
         return "reg";
     }
 
+    @GetMapping("/logout")
+    private String logout(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        session.invalidate();
+
+        return "index";
+    }
+
     @PostMapping("/reg")
     private String reg(MemberDto memberDto, Model model) {
         if(!memberDto.getPassword1().equals(memberDto.getPassword2())) {
             model.addAttribute("msg","패스워드가 일치하지 않습니다.");
+            return "reg";
         }
 
         Member result = memberRepo.findById(memberDto.getId()).orElse(null);
         if(result != null) {
             model.addAttribute("msg","중복된 아이디 입니다.");
+            return "reg";
         }
 
         Member member = new Member();

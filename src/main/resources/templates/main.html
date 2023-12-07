@@ -5,7 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<span th:text="${session.sessionUserId}"></span><span>님 환영합니다.</span>
+<span th:text="${session.sessionUserId}"></span><span>님 환영합니다.</span><button onclick="location.href='/logout'">로그아웃</button>
+
+<table border="1">
+    <tr><th>번호</th><th>타이틀</th><th>글쓴이</th><th>작성일</th><th>조회수</th></tr>
+    <tr th:each="board : ${boardList}">
+        <td th:text="${board.no}"></td>
+        <td><a th:href="@{'/board/detail/' + ${board.no}}" th:text="${board.title}"> </a> </td>
+        <td th:text="${board.writer}"></td>
+        <td th:text="${board.regDate}"></td>
+        <td th:text="${board.count}"></td>
+    </tr>
+</table>
+<button onclick="location.href='/board/reg'">글쓰기</button>
+<span th:text="${msg}"></span>
 
 </body>
 </html>

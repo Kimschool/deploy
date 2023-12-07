@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+조회수:<br>
+<input type="text" disabled="true" th:value="${board.count}"><br>
+번호:<br>
+    <input type="text" disabled="true" th:value="${board.no}"><br>
+작성자:<br>
+<input type="text" disabled="true" th:value="${board.writer}"><br>
+타이틀:<br>
+<input type="text" disabled="true" th:value="${board.title}"><br>
+내용:<br>
+<textarea rows="10" disabled="true" th:text="${board.content}"></textarea><br>
+작성일:<br>
+<input type="text" disabled="true" th:value="${board.regDate}"><br>
+<a type="button" th:href="@{/board/modify(no=${board.no})}">수정</a><a type="button" th:href="@{/board/delete(no=${board.no})}">삭제</a><button onclick="location.href='/board/list'">뒤로가기</button>
+
+
+</body>
+</html>
