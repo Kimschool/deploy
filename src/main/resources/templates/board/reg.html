@@ -7,8 +7,10 @@
 <body>
 
 <form action="/board/reg" method="post">
+    타이틀:<br>
     <input type="text" name="title"><br>
     <input type="hidden" name="writer" th:value="${session.sessionUserId}">
+    내용:<br>
     <textarea rows="10" name="content"></textarea><br>
     <button type="submit">게시글등록</button>
 </form>

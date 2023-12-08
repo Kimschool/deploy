@@ -20,8 +20,16 @@ public class BoardController {
     @GetMapping("detail/{no}")
     private String detail(@PathVariable Integer no,  Model model) {
         Board board = boardRepo.findById(no).orElse(null);
+        // 취득한 board에서 count에 1을 더한다.
+        assert board != null;
+        board.setCount(board.getCount() + 1);
 
+        // 디비에 update한다
+        boardRepo.save(board);
+
+        // 화면에 업데이트 된 객체를 담아 넘긴다.
         model.addAttribute("board", board);
+
         return "board/detail";
     }
 
